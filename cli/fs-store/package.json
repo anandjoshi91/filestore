@@ -1,0 +1,52 @@
+{
+  "name": "fs-store",
+  "version": "1.0.0",
+  "description": "cli for interacting with file server",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "fs-store": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "go": "tsc && node dist/index.js",
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "create": "npm run build && npm run test",
+    "build": "tsc -p .",
+    "local": "npm i -g && fs-store",
+    "pretty": "prettier --single-quote --trailing-coma es2018 --write '**/*.{js,css,md,ts}' '!{CHANGELOG.md, **/*.min.js, {build, coverage}/**/*, package.json}' ",
+    "refresh": "rm -rf ./node_modules ./package-lock.json && npm install"
+  },
+  "author": "anandhjoshi@outlook.com",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.14.31",
+    "axios": "^0.21.1",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
+    "commander": "^7.1.0",
+    "consola": "^2.15.3",
+    "console-table-printer": "^2.7.5",
+    "dotenv": "^8.2.0",
+    "figlet": "^1.5.0",
+    "form-data": "^4.0.0",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/chalk": "^2.2.0",
+    "@types/clear": "^0.1.1",
+    "@types/commander": "^2.12.2",
+    "@types/consola": "^2.2.5",
+    "@types/figlet": "^1.2.1",
+    "@types/lodash": "^4.14.168",
+    "prettier": "^2.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0 < 15"
+  }
+}

@@ -1,0 +1,202 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "CFS - cloud file storage service",
+      "version": "1.0.0",
+      "title": "Cloud File Storage (CFS)",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "apiteam@swagger.io"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "host": "localhost:3000/",
+    "basePath": "api/",
+    "tags": [
+      {
+        "name": "CFS",
+        "description": "Cloud File Storage apis"
+      }
+    ],
+    "schemes": ["http"],
+    "paths": {
+      "/files": {
+        "get": {
+          "tags": ["files"],
+          "summary": "Get all files",
+          "operationId": "getAllFiles",
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/allFilesResponse"
+              }
+            },
+            "400": {
+              "description": "Error occurred in fetching all files",
+              "schema": {
+                "$ref": "#/definitions/errorResponse"
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": ["files"],
+          "summary": "Upload a file to the server",
+          "description": "Add file to server",
+          "operationId": "uploadFile",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Form data for file upload",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/fileUploadRequest"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "File Created",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "result" : {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error occurred in uploading a new file",
+              "schema": {
+                "$ref": "#/definitions/errorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/files/{fileId}": {
+        "get": {
+          "tags": ["files"],
+          "summary": "Download file by Id",
+          "operationId": "getFileById",
+          "parameters": [
+            {
+              "name": "fileId",
+              "in": "path",
+              "description": "The file that needs to be fetched",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Displays blob/file on the browser"
+            },
+            "400": {
+              "description": "Error occurred in fetching a file",
+              "schema": {
+                "$ref": "#/definitions/errorResponse"
+              }
+            }
+          }
+        },
+        "delete": {
+            "tags": ["files"],
+            "summary": "Delete file by Id",
+            "operationId": "deleteFileById",
+            "parameters": [
+              {
+                "name": "fileId",
+                "in": "path",
+                "description": "The file that needs to be deleted",
+                "required": true,
+                "type": "number"
+              }
+            ],
+            "produces": ["application/json"],
+            "responses": {
+              "200": {
+                "description": "Successfully deleted file",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "result": {
+                            "type": "string"
+                        }
+                    }
+                }
+              },
+              "400": {
+                "description": "Error occurred in deleting a file",
+                "schema": {
+                  "$ref": "#/definitions/errorResponse"
+                }
+              }
+            }
+          }
+      }
+    },
+    "definitions": {
+      "allFilesResponse": {
+        "type": "object",
+        "properties": {
+            "result": {
+                "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "size": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            }
+          }
+        }
+            }
+        }
+      },
+      "fileUploadRequest": {
+        "type": "object",
+        "properties":{
+            "file": {
+                "type": "string",
+                "format": "binary"
+            }
+        }
+      },
+      "errorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

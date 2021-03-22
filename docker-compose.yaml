@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  server:
+    image: fs-server:latest
+    volumes:
+      - ./server/uploads:/var/www/server/uploads
+    command: node --stack_trace_limit=30 ./dist/server.js
+    ports:
+      - "3000:3000"
+  web:
+    image: fs-ui:latest
+    ports:
+      - "8080:80"
+    depends_on:
+      - server

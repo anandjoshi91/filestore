@@ -1,0 +1,44 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A simple file server",
+  "main": "./dist/server.js",
+  "types": "./dist/server.d.ts",
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "start": "node ./dist/server.js",
+    "pretty": "prettier --single-quote --trailing-coma es2018 --write '**/*.{js,css,md,ts}' '!{CHANGELOG.md, **/*.min.js, {build, coverage}/**/*, package.json}' ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "anandhjoshi@outlook.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/cors": "^2.8.10",
+    "@types/del": "^4.0.0",
+    "@types/lodash": "^4.14.168",
+    "@types/lokijs": "^1.5.3",
+    "@types/multer": "^1.4.5",
+    "@types/sha1": "^1.1.2",
+    "@types/swagger-ui-express": "^4.1.2",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "del": "^6.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-winston": "^4.1.0",
+    "lodash": "^4.17.21",
+    "lokijs": "^1.5.11",
+    "multer": "^1.4.2",
+    "sha1": "^1.1.1",
+    "swagger-ui-express": "^4.1.6",
+    "winston": "^3.3.3"
+  }
+}
